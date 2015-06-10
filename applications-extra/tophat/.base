@@ -1,0 +1,25 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for perl use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+# kwant built on top of its own python installation
+
+if ![is-loaded gcc/4.8.1] { module add gcc/4.8.1}
+if ![is-loaded boost/1.58.0] { module add boost/1.58.0}
+if ![is-loaded bowtie2] { module add bowtie2}
+
+# Prereqs
+prereq gcc/4.8.1
+prereq boost/1.58.0
+prereq bowtie2
+ 
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH 		$app_dir/bin
+prepend-path LD_LIBRARY_PATH 	$app_dir/lib
+
+
