@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version gcc/4.6.0 default

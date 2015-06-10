@@ -1,0 +1,48 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+conflict cantera
+
+# Prereqs
+if ![is-loaded gcc/4.6.0] {
+	module load gcc/4.6.0
+}
+prereq gcc/4.6.0
+if ![is-loaded boost] {
+	module load boost/1.49.0
+}
+prereq boost/1.49.0
+if ![is-loaded matlab/R2014b] {
+        module load applications-extra matlab/R2014b
+}
+if ![is-loaded blas/1.1-sse4.2] {
+        module load blas/1.1-sse4.2
+}
+prereq blas/1.1-sse4.2
+if ![is-loaded lapack/3.3.1-openmpi-1.4.3-sse4.2] {
+        module load mpi-openmpi/1.4.3-gcc-4.6.0 lapack/3.3.1-openmpi-1.4.3-sse4.2
+}
+prereq lapack/3.3.1-openmpi-1.4.3-sse4.2
+
+# Specific setup goes here, license files, path setup, etc
+
+prepend-path PATH 		$app_dir/bin
+prepend-path PATH		$app_dir/../sundials/2.5.0/bin
+prepend-path PATH		$app_dir/matlab/toolbox
+prepend-path PATH		$app_dir/../python/2.7.8/bin
+prepend-path LD_LIBRARY_PATH	$app_dir/lib
+prepend-path LD_LIBRARY_PATH	$app_dir/../sundials/2.5.0/lib
+prepend-path MANPATH		$app_dir/man1
+# incorporated from $CANTERA/bin/setup_cantera
+prepend-path MATLABPATH		$app_dir/matlab/toolbox:$app_dir/matlab/toolbox/1D
+#prepend-path PYTHON_CMD		/opt/share/python/v2.7.6.app/bin/python
+prepend-path PYTHON_CMD		/opt/share/cantera/python/2.7.8/bin/python
+#prepend-path PYTHONPATH		/opt/share/python/v2.7.6.app:$app_dir/lib/python2.7/site-packages
+prepend-path PYTHONPATH		/opt/share/cantera/python/2.7.8:$app_dir/lib/python2.7/site-packages
+prepend-path LD_LIBRARY_PATH	/opt/share/cantera/python/2.7.8/lib
+

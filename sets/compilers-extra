@@ -1,0 +1,56 @@
+#%Module 1.0 -*- tcl -*-
+
+set version [ file tail [ module-info name ] ]
+set name compilers-extra
+
+proc ModulesHelp { } {
+    global version
+    global name
+    puts stderr "\tThis module loads $name version $version\n"
+}
+
+module-whatis   "Add $name module"
+
+set mpath $env(MODULEPATH)
+
+if { [info exists env(_LMFILES_)] } {
+    set lmfiles $env(_LMFILES_)
+}
+
+if { [ module-info mode load ] } {
+   if { ![info exists env(_COMPILERSEXTRA_)] } {
+      if { [info exists env(_LMFILES_)] } {
+         regsub -all compilers\/ $lmfiles compilers-extra\/ lmfiles
+      }
+      regsub -all compilers $mpath compilers-extra mpath
+      setenv _COMPILERSEXTRA_ 1
+   }
+   setenv MODULEPATH $mpath
+   if { [info exists env(_LMFILES_)] } {
+      setenv _LMFILES_ $lmfiles
+   }   
+
+   puts stderr "Loading module for $name"             
+   puts stderr "Extra compiler modules now loaded"
+}
+
+if { [ module-info mode remove ] } {
+    puts stderr "Unloading module for $name"             
+    puts stderr "Extra compiler modules now unloaded"
+    regsub -all compilers-extra $mpath compilers mpath
+
+    set lmfiles_list [split $lmfiles ":"]
+    foreach file $lmfiles_list {
+	regsub -all compilers-extra\/ $file compilers\/ result
+	if { [file exist $result] } {
+	    regsub -all $file $lmfiles $result lmfiles 
+	}
+    }
+
+    # Please note that the extra arg here to unsetenv is critical--do not remove it.
+    unsetenv MODULEPATH $mpath
+    unsetenv _LMFILES_ $lmfiles
+    unsetenv _COMPILERSEXTRA_	
+}
+
+

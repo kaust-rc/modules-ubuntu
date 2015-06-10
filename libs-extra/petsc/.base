@@ -1,0 +1,25 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup 
+
+# no conflicts
+
+# no prereq 
+prereq   load gcc/4.6.0
+prereq   load mpi-openmpi/1.4.3-gcc-4.6.0
+prereq   load cmake
+prereq   load lapack scalapack
+prereq   load atlas
+prereq   load python
+
+prepend-path PATH $app_dir/bin
+prepend-path LD_LIBRARY_PATH $app_dir/lib
+prepend-path LIBRARY_PATH $app_dir/lib
+prepend-path MANPATH $app_dir/share/man
+prepend-path INFOPATH $app_dir/share/info
+setenv PETSC_DIR $app_dir
+
+
+

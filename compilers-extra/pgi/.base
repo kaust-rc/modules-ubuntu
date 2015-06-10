@@ -1,0 +1,51 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}
+#${version}/linux86-64/${version}
+
+proc ReportVersion {} {
+    global current_version                    
+    global module_name
+    if {[catch {set current_version [exec pgf90 -V | head -n2 | tail -n1 | awk "{ print \$2 }" ]} e]} {
+       set current_version none
+    } 
+    puts stderr "Current $module_name version: $current_version"
+}
+
+ReportVersion
+
+if { [ module-info mode load ] } {
+
+    if {${current_version} == 10.2-1} {
+	puts stderr "Note: Currently only Fortran (pgf90) is licensed for version 10 of the PGI compilers.  If you need C or C++, please use version 12"
+    }
+}
+#puts stderr " app_dir $app_dir"
+#puts stderr " OS $distro"
+
+
+set appdir_year [glob -nocomplain -directory $app_dir/linux86-64 20*]
+
+#puts stderr " appdir_year $appdir_year"
+
+setenv PGI ${app_dir}
+prepend-path LM_LICENSE_FILE ${app_dir}/license.dat
+
+#prepend-path MANPATH $app_dir/linux86-64/2012/man 
+prepend-path MANPATH $appdir_year/man 
+
+#prepend-path PATH $app_dir/linux86-64/2012/bin
+prepend-path PATH $appdir_year/bin
+
+#prepend-path LD_LIBRARY_PATH $app_dir/linux86-64/2012/lib
+#prepend-path LD_LIBRARY_PATH $app_dir/linux86-64/2012/libso
+
+prepend-path LD_LIBRARY_PATH $appdir_year/lib
+prepend-path LD_LIBRARY_PATH $appdir_year/libso
+
+ReportVersion
+
+
+
+
+

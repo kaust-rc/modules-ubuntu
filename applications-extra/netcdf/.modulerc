@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version netcdf/4.1.3 default

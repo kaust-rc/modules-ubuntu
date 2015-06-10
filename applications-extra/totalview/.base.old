@@ -1,0 +1,38 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup-v2.tcl
+setCommonVariables
+#APP_NAME 
+#APP_VERSION
+#APP_DIR 
+#set name [lrange [split [ module-info name ] / ] 0 0 ]
+#set dir_name MATLAB-classroom
+#set version [ file tail [ module-info name ] ]
+
+conflict $APP_NAME
+
+#set module_extra_dir "[file dirname $ModulesCurrentModulefile]/../../applications-extra"
+
+if { [info exists env(TOTALVIEW_ROOT)] } {
+    set app_dir $env(TOTALVIEW_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/$APP_DIR
+    } else {
+	set app_dir /opt/share/$APP_DIR
+    }
+}
+
+GeneralAppSetup
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+setenv LM_LICENSE_FILE $app_dir/license.dat
+
+
+
+
+

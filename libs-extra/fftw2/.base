@@ -1,0 +1,25 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}/${distro}/${m_arch} 
+
+conflict fftw3 
+
+prereq gcc/4.6.0
+prereq mpi-openmpi/1.4.3-gcc-4.6.0
+
+prepend-path LD_LIBRARY_PATH $app_dir/lib64
+
+prepend-path LIBRARY_PATH    $app_dir/lib64
+
+prepend-path CPATH           $app_dir/include             
+prepend-path INFOPATH        $app_dir/share/info       
+
+#setenv       FFTW_DIR $app_dir/$version
+#$setenv       FFTW_LIB fftw 
+#prepend-path FFTW_LIBDIR $app_dir/$version/lib
+#setenv       FFTW_STATICLIB $app_dir/$version/lib/libfftw.a 
+#prepend-path FFTW_INCDIR $app_dir/$version/include
+
+
+
+

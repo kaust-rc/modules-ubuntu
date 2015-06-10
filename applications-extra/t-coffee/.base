@@ -1,0 +1,33 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup
+
+
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+#prereq perl 
+# perl is built in
+
+# Specific setup goes here, license files, path setup, etc
+set    DIR_4_TCOFFEE $app_dir
+
+setenv DIR_4_TCOFFEE 	$DIR_4_TCOFFEE
+setenv MAFFT_BINARIES	"$DIR_4_TCOFFEE/plugins/linux/"
+setenv CACHE_4_TCOFFEE 	"~/.t_coffee/cache/"
+setenv TMP_4_TCOFFEE 	"$DIR_4_TCOFFEE/tmp/"
+setenv EMAIL_4_TCOFFEE 	"-"
+
+prepend-path PATH 	$app_dir/bin
+append-path PERL5LIB 	"$DIR_4_TCOFFEE/perl"
+#setenv LM_LICENSE_FILE $app_dir/license.dat
+
+
+
+
+

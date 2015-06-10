@@ -1,0 +1,18 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for AVIZO use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+
+
+

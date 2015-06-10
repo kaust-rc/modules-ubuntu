@@ -1,0 +1,17 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for AVIZO use with 'environment-modules' package:
+#
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+#prereq gcc/4.6.0
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path LD_LIBRARY_PATH /opt/share/fmask/v81/runtime/glnxa64:/opt/share/fmask/v81/bin/glnxa64:/opt/share/fmask/v81/sys/os/glnxa64:/opt/share/fmask/v81/sys/java/jre/glnxa64/jre/lib/amd64/native_threads:/opt/share/fmask/v81/sys/java/jre/glnxa64/jre/lib/amd64/server:/opt/share/fmask/v81/sys/java/jre/glnxa64/jre/lib/amd64
+setenv XAPPLRESDIR /opt/share/fmask/v81/X11/app-defaults

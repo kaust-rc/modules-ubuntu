@@ -1,0 +1,24 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  ANSYS ICEMCFD Module for use with 'environment-modules' package:
+# 
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+puts stderr "$app_dir"
+
+# Environment variables PATH, LD_LIBRARY_PATH, MAN
+
+#setenv 		  ANSYSLMD_LICENSE_FILE  27010@license-lin1.kaust.edu.sa
+# below is commented out, as it serves no purporse - moondh Dec. 26, 2012
+#setenv		  ICEM_ACN               $app_dir/v$version/icemcfd/linux64_amd
+setenv 		  PROMIF_ACN             $app_dir/v$version/icemcfd/linux64_amd/dif/pro
+# added to add path to anslic_admin - moondh May 2014
+prepend-path	PATH			$app_dir/shared_files/licensing/lic_admin/
+prepend-path  	PATH			$app_dir/bin
+
+
+
+
+

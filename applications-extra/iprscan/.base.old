@@ -1,0 +1,35 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  InterProScan module for use with 'environment-modules' package:
+# 
+
+set version [ file tail [ module-info name ] ]
+set name iprscan
+
+if { [info exists env(iprscan_ROOT)] } {
+    set app_dir $env(iprscan_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/iprscan
+    } else {
+	set app_dir /opt/share/iprscan
+    }
+}
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup.tcl
+puts stderr "Loading module $name version $version $app_dir"              
+
+#GeneralAppSetup
+
+set		IPRSCAN		$app_dir/v$version.app
+prepend-path	PATH		$IPRSCAN/bin 
+prepend-path	MANPATH		$IPRSCAN/doc/man/
+
+if { [ module-info mode load ] } {
+    puts stderr "Loading module $name version $version"              
+}
+if { [ module-info mode remove ] } {
+    puts stderr "Unloading module $name version $version"             
+}
+
+

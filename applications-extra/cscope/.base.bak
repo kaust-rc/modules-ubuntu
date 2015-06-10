@@ -1,0 +1,33 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+
+set version [ file tail [ module-info name ] ]
+set name sysnopsys
+
+if { [info exists env(SYNOPSYS_ROOT)] } {
+    set app_dir $env(SYNOPSYS_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/SYNOPSYS
+    } else {
+	set app_dir /opt/share/SYNOPSYS
+    }
+}
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup.tcl
+GeneralAppSetup
+
+set CSROOT $app_dir/CSCOPE/v2009.app/ai_bin
+set HSROOT $app_dir/HSPICE/v2009.app/bin
+set MEROOT $app_dir/MEDICI/v2009.app/bin
+set STROOT $app_dir/SENTAURUS/bin
+set TCROOT $app_dir/TCAD/tcad/C-2009.06-SP2/amd64/bin
+set TSROOT $app_dir/TSUPREM4/v2009.app/bin
+
+prepend-path PATH  $CSROOT:$HSROOT:$MEROOT:$STROOT:$TCROOT:$TSROOT
+
+setenv SNPSLMD_LICENSE_FILE 27200@wthfxnsr03.kaust.edu.sa
+
+

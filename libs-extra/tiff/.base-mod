@@ -1,0 +1,18 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#source [file dirname $::ModulesCurrentModulefile]/../../../common/setup.tcl
+#GeneralAppSetup
+
+# no conflicts
+
+# no prereq
+set app_dir /opt/share/tiff/4.0.4/gcc-4.6.0
+
+
+prepend-path PATH $app_dir/bin
+prepend-path LD_LIBRARY_PATH $app_dir/lib
+prepend-path LIBRARY_PATH $app_dir/lib
+prepend-path MANPATH $app_dir/share/man
+
+setenv TIFF_DIR $app_dir

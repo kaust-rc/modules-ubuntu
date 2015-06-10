@@ -1,0 +1,20 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  GNU gcc module for use with 'environment-modules' package:
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralCompilerSetup 
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+
+
+# Set MANPATH and INFOPATH
+setenv          JAVA_HOME   $app_dir 
+
+prepend-path    PATH        $app_dir/bin 
+prepend-path    MANPATH     $app_dir/man 

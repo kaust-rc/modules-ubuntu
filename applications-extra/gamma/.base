@@ -1,0 +1,48 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+
+
+# TODO: need to be review, when a newer version is install. To standardize the installtion tree
+set GAMMA_MOD   $app_dir
+set GSW         [glob -nocomplain -directory $GAMMA_MOD GAMMA_SOFTWARE*]
+set GSW         $GAMMA_MOD/GAMMA_SOFTWARE-20100630
+set G_MSP       $GSW/MSP
+set G_ISP       $GSW/ISP
+set G_DIF       $GSW/DIFF
+set G_DIS       $GSW/DISP
+set G_LAT       $GSW/LAT
+set G_IPT       $GSW/IPTA
+set G_DAL      $GSW/GDAL-1.7.2/prefix
+#set G_DAL       [glob -nocomplain -directory $GSW GDAL*]/prefix
+#set G_HDF      $GSW/HDF5/hdf5-1.6.6/hdf5
+set G_HDF       [glob -nocomplain -directory $GSW/HDF5 hdf5*]/hdf5
+
+setenv          GAMMA_MOD_PATH  $GAMMA_MOD
+
+prepend-path    MSP_HOME        $G_MSP
+prepend-path    ISP_HOME        $G_ISP
+prepend-path    DIFF_HOME       $G_DIF
+prepend-path    DISP_HOME       $G_DIS
+prepend-path    LAT_HOME        $G_LAT
+prepend-path    IPTA_HOME       $G_IPT
+prepend-path    GDAL_TOOLS      $G_DAL
+
+prepend-path    PATH            $G_DIS/bin:$G_MSP/bin:$G_ISP/bin:$G_DIF/bin:$G_LAT/bin:$G_IPT/bin:$G_DAL/bin:$G_HDF/bin
+prepend-path    LD_LIBRARY_PATH	$GSW/lib:$G_DAL/lib:$G_HDF/lib
+prepend-path    INCLUDE         $G_DAL/include:$G_HDF/include
+
+

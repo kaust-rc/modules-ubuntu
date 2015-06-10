@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version petsc/3.4.3 default

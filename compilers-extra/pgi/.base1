@@ -1,0 +1,36 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}/linux86-64/${version}
+
+puts stderr "app_dir $app_dir"
+
+proc ReportVersion {} {
+    global current_version                    
+    global module_name
+    if {[catch {set current_version [exec pgf90 -V | head -n2 | tail -n1 | awk "{ print \$2 }" ]} e]} {
+       set current_version none
+    } 
+    puts stderr "Current $module_name version: $current_version"
+}
+
+ReportVersion
+
+if { [ module-info mode load ] } {
+	puts stderr "Note: Currently only Fortran (pgf90) is licensed"
+}
+
+setenv PGIDIR ${app_dir}
+puts stderr $::env(PGIDIR)
+
+
+prepend-path PATH $app_dir/bin
+prepend-path MANPATH $app_dir/man 
+prepend-path LD_LIBRARY_PATH $app_dir/lib
+prepend-path LD_LIBRARY_PATH $app_dir/libso
+
+ReportVersion
+
+
+
+
+

@@ -1,0 +1,59 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+# Source common KAUST setup
+# Also, set coomon variables
+# module_name       : module name
+# module_name_uc    : upper case 
+# module_name_lc    : lowwer case
+# version           : version
+# distro            : OS distribution
+# m_arch            : Machine architecture
+# module_extra_dir  : module's extra directory 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+#source $env(KAUST_MODULES_ROOT)/common/common_setup2.tcl
+
+
+# GeneralAppSetup :
+# Setup module info (desc, whatis, …)
+#
+# Set global variables: 
+# app_dir   :  app Installation dir (e.g /opt/share/MATLAB-classroom/R2011a)
+# apps_root :  applications root (e.g /opt/share)
+# dir_name  :  application root directory name (e.g MATLAB-classroom)
+#
+# Usage:
+#   GeneralAppSetup [suffix_dir] [app_dir_env],
+#       suffix_dir  : suffix directory path (default: v${version}.app)
+#       app_dir_env : application directory enviroment variable name (default: ${module_name_uc}_ROOT)
+GeneralAppSetup
+
+# GeneralCompilerSetup:
+# Similar to GeneralAppSetup, 
+# but suffix_dir default  = ${version}/${distro}
+#GeneralCompilerSetup
+
+# GeneralLibSetup
+# Similar to GeneralAppSetup, 
+# but suffix_dir default  = ${version}/${distro}/${m_arch}
+#GeneralLibSetup
+if { [string first ".el6" [uname release]] == -1 } {
+    puts stderr "Molpro is not supported on this platform. Please use it on a RHEL-based system (e.g. Noor)"
+    exit
+}
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+prereq gcc/4.6.0
+prereq mpi-openmpi/1.4.3-gcc-4.6.0
+prereq atlas
+#prereq libs-extra
+#prereq boost
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+

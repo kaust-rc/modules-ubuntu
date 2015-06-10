@@ -1,0 +1,53 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+# Source common KAUST setup
+# Also, set coomon variables
+# module_name       : module name
+# module_name_uc    : upper case 
+# module_name_lc    : lowwer case
+# version           : version
+# distro            : OS distribution
+# m_arch            : Machine architecture
+# module_extra_dir  : module's extra directory 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+#source $env(KAUST_MODULES_ROOT)/common/common_setup2.tcl
+
+
+# GeneralAppSetup :
+# Setup module info (desc, whatis, …)
+#
+# Set global variables: 
+# app_dir   :  app Installation dir (e.g /opt/share/MATLAB-classroom/R2011a)
+# apps_root :  applications root (e.g /opt/share)
+# dir_name  :  application root directory name (e.g MATLAB-classroom)
+#
+# Usage:
+#   GeneralAppSetup [suffix_dir] [app_dir_env],
+#       suffix_dir  : suffix directory path (default: v${version}.app)
+#       app_dir_env : application directory enviroment variable name (default: ${module_name_uc}_ROOT)
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+prereq mpi-openmpi
+
+
+# Specific setup goes here, license files, path setup, etc
+setenv          NETCDF          $app_dir
+prepend-path    PATH            $app_dir/bin
+prepend-path    LD_LIBRARY_PATH $app_dir/lib
+prepend-path    LIBRARY_PATH    $app_dir/lib
+prepend-path    CPATH           $app_dir/include
+prepend-path    MANPATH         $app_dir/share/man 
+prepend-path    INFOPATH        $app_dir/share/info
+# added libgpfs.so to KAUSTLIB for Ubuntu workstations - 4/24/14 by moondh
+prepend-path	LD_LIBRARY_PATH	$app_dir/KAUSTLIB
+
+
+
+

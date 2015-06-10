@@ -1,0 +1,88 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  CADENCE module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+
+#if { [string first ".el5" [uname release]] == -1 } {
+#    puts stderr "$name is not currently supported on FC11.  Please use $name on Noor." 
+#    exit 
+#}
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path      LM_LICENSE_FILE         27020@wthfxnsr03.kaust.edu.sa
+
+
+set 		CADENCE_MOD 		$app_dir
+setenv		CADENCE_MOD_PATH	$CADENCE_MOD
+
+# Set a default OS-Platform for Unsupported os!
+setenv      OA_UNSUPPORTED_PLAT linux_rhel40
+# Run on 64bit-mode
+setenv      CDS_AUTO_64BIT      ALL
+
+set             ASSURA_dir      [glob -nocomplain -directory $CADENCE_MOD ASSURA*]
+set             EDI_dir         [glob -nocomplain -directory $CADENCE_MOD EDI*]
+#set             QRC_dir         [glob -nocomplain -directory $CADENCE_MOD EXT*]
+set             CDS_dir         [glob -nocomplain -directory $CADENCE_MOD IC*]
+set             MMSIM_dir       [glob -nocomplain -directory $CADENCE_MOD MMSIM*]
+#set             IUS_dir         [glob -nocomplain -directory $CADENCE_MOD IUS*]
+
+set             ETS_dir       [glob -nocomplain -directory $CADENCE_MOD ETS*]
+set             INCISIV_dir   [glob -nocomplain -directory $CADENCE_MOD INCISIV*]
+set             PVE_dir       [glob -nocomplain -directory $CADENCE_MOD PVE*]
+set             RC_dir        [glob -nocomplain -directory $CADENCE_MOD RC*]
+set             CONFRML_dir        [glob -nocomplain -directory $CADENCE_MOD CONFRML*]
+
+
+setenv          ASSURAHOME      $ASSURA_dir
+setenv          EDIHOME         $EDI_dir
+#prepend-path    QRC_HOME        $QRC_dir
+setenv          CDSHOME         $CDS_dir
+setenv          CDSDIR          $CDS_dir
+setenv          MMSIMHOME       $MMSIM_dir
+#prepend-path    IU82            $IUS_dir
+
+setenv          ETSHOME         $ETS_dir
+setenv          INCISIVHOME     $INCISIV_dir
+setenv          IUSDIR          $INCISIV_dir
+setenv          PVEHOME         $PVE_dir
+setenv          RCHOME          $RC_dir
+setenv          CONFRMLHOME     $CONFRML_dir
+
+
+#prepend-path    ICPATH          $CDS_dir/tools/dfII/tools/bin
+set          ICPATH          $CDS_dir/tools/bin:$CDS_dir/tools/dfII/bin
+set          ASSURAPATH      $ASSURA_dir/tools/bin:$ASSURA_dir/tools/dfII/bin
+#prepend-path    QRCPATH	        $QRC_dir/tools/bin
+set          MMSIMPATH       $MMSIM_dir/tools/bin:$MMSIM_dir/tools/dfII/bin
+set          EDIPATH	        $EDI_dir/tools/bin:$EDI_dir/tools/dfII/bin
+#prepend-path    IUPATH          $IUS_dir/tools.lnx86/tools/bin
+
+set          ETSPATH         $ETS_dir/tools/bin:$ETS_dir/tools/dfII/bin
+set          INCISIVPATHE    $INCISIV_dir/bin:$INCISIV_dir/tools/bin:$INCISIV_dir/tools/dfII/bin
+set          PVEPATH         $PVE_dir/tools/bin:$PVE_dir/tools/dfII/bin
+set          RCPATH          $RC_dir/bin
+set          CONFRMLPATH     $CONFRML_dir/bin
+
+
+#setenv          OA_HOME         $CDS_dir/share/oa
+#setenv          OA_HOME         $EDI_dir/oa_v22.42.004
+
+prepend-path    PATH            $ICPATH:$ASSURAPATH:$MMSIMPATH:$EDIPATH:$ETSPATH:$INCISIVPATHE:$PVEPATH:$RCPATH:$CONFRMLPATH
+
+
+#prepend-path    LD_LIBRARY_PATH $CADENCE_MOD/IC610/tools.lnx86/modelwriter/lib
+
+
+
+

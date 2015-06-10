@@ -1,0 +1,47 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+
+set version [ file tail [ module-info name ] ]
+set name WIEN2K
+
+if { [info exists env(WIEN2K_ROOT)] } {
+    set app_dir $env(WIEN2K_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/WIEN2K
+    } else {
+	set app_dir /opt/share/WIEN2K
+    }
+}
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup.tcl
+GeneralAppSetup
+
+prereq mpi-openmpi/1.4.3-gcc-4.6.0
+prereq fftw2/2.1.5-openmpi-1.4.3-sse4.2-dp
+prereq blas/1.1-sse4.2
+
+setenv 			OMP_NUM_THREADS 1
+
+setenv		        SCRATCH                         ./
+
+set 			WIENROOT 			${app_dir}/v$version-openmpi.app
+setenv 			WIENROOT 			${app_dir}/v$version-openmpi.app
+
+#prepend-path		W2WEB_CASE_BASEDIR		$WIEN2K_MOD/data
+
+prepend-path		STRUCTEDIT_PATH 		$WIENROOT/SRC_structeditor/bin
+
+prepend-path 		PATH				$WIENROOT
+
+# --------------------------------------------------------
+
+if { [ module-info mode load ] } {
+    puts stderr "Loading module $name version $version"
+
+}
+if { [ module-info mode remove ] } {
+    puts stderr "Unloading module $name version $version"
+}

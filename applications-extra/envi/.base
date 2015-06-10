@@ -1,0 +1,20 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+conflict envi
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/idl/bin
+prepend-path PATH $app_dir/envi/bin
+
+setenv 	IDL_DIR		$app_dir/idl83
+set 	ENVI_DIR	$app_dir/envi51
+

@@ -1,0 +1,66 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for perl use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+prereq ifort/11.1.075
+prereq mpi-openmpi/1.6.4-icc-11.1
+
+# Specific setup goes here, license files, path setup, etc
+
+prepend-path BIN_DIR		$app_dir/imsl/fnl700/lnxin120e64/bin
+prepend-path IMSL_DIR		$app_dir/imsl
+prepend-path FNL_DIR		$app_dir/imsl/fnl700
+prepend-path FNL_EXAMPLES	$app_dir/imsl/fnl700/lnxin120e64/examples
+prepend-path LICENSE_DIR	$app_dir/license
+prepend-path LM_LICENSE_FILE	$app_dir/license/imsl_license.lic
+prepend-path VNI_DIR		$app_dir
+prepend-path VNI_F90_MSG	$app_dir/imsl/fnl700/lnxin120e64/bin/
+
+setenv F90			ifort
+setenv FC			ifort
+setenv MPIF90			mpif90
+setenv MPIRUN			mpirun
+setenv FFLAGS			"-openmp -fp-model precise -I$app_dir/imsl/fnl700/lnxin120e64/include"
+setenv F90FLAGS 		"-openmp -fp-model precise -I$app_dir/imsl/fnl700/lnxin120e64/include"
+setenv FNL_COMPILER_VERSION	"Intel(R) Fortran Compiler for 64-bit based applications Version 12.0.4.191 Build 20110427"
+setenv FNL_LICENSE_NUMBER	707101
+setenv FNL_OS_VERSION		"Red Hat Enterprise Linux Server release 6.0 (Santiago)"
+setenv FNL_VERSION		"7.0.0"
+setenv LIB_ARCH			lnxin120e64
+setenv OMP_NESTED		FALSE
+
+set IMSL_LIB_DIR		$app_dir/imsl/fnl700/lnxin120e64/lib
+set MKL_LIB_DIR			/opt/share/INTEL/v11.1.075.app/ifort/mkl/lib/em64t
+
+setenv LINK_F90_HPC		"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_F90			"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_F90_SHARED_HPC	"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_F90_SHARED		"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_F90_STATIC_HPC	"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limsls_err -limslmpistub -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_F90_STATIC		"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limsls_err -limslmpistub -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL_HPC		"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL		"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL_IMSL		"-i_dynamic -L$IMSL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslscalar -limslblas_imsl -limsllapack_imsl -limslmpistub -Xlinker -rpath -Xlinker $IMSL_LIB_DIR"
+setenv LINK_FNL_NVIDIA		"-L$IMSL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslscalar -limslblas_cuda -limsllapack_imsl -limslmpistub -lcublas -lcudart -Xlinker -rpath -Xlinker $IMSL_LIB_DIR"
+setenv LINK_FNL_SHARED_HPC	"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL_SHARED		"-i_dynamic -z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limslmpistub -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Xlinker -rpath -Xlinker $IMSL_LIB_DIR -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL_SHARED_IMSL	"-i_dynamic -L$IMSL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslscalar -limslblas_imsl -limsllapack_imsl -limslmpistub -Xlinker -rpath -Xlinker $IMSL_LIB_DIR"
+setenv LINK_FNL_SHARED_NVIDIA	"-L$IMSL_LIB_DIR -Bdynamic -limsl -limslsuperlu -limslscalar -limslblas_cuda -limsllapack_imsl -limslmpistub -lcublas -lcudart -Xlinker -rpath -Xlinker $IMSL_LIB_DIR"
+setenv LINK_FNL_STATIC_HPC	"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limsls_err -limslmpistub -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_FNL_STATIC_IMSL	"-L$IMSL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslscalar -limslblas_imsl -limsllapack_imsl -limsls_err -limslmpistub -Wl,--end-group -Bdynamic"
+setenv LINK_FNL_STATIC_NVIDIA	"-L$IMSL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslscalar -limslblas_cuda -limsllapack_imsl -limsls_err -limslmpistub -Wl,--end-group -Bdynamic -lcublas -lcudart -Xlinker -rpath -Xlinker $IMSL_LIB_DIR"
+setenv LINK_FNL_STATIC		"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_l -limsllapack_vendor -limslblas_vendor -limsls_err -limslmpistub -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPI_HPC		"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_s -limsllapack_vendor -limslblas_vendor -limslp_err -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPI_IMSL		"-L$IMSL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslscalar -limsllapack_imsl -limslblas_imsl -limslp_err -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPIS_HPC		"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_s -limsllapack_vendor -limslblas_vendor -limsls_err -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPIS_IMSL		"-L$IMSL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslscalar -limsllapack_imsl -limslblas_imsl -limsls_err -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPIS		"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_s -limsllapack_vendor -limslblas_vendor -limsls_err -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+setenv LINK_MPI			"-z muldefs -L$IMSL_LIB_DIR -L$MKL_LIB_DIR -Bstatic -Wl,--start-group -limsl -limslsuperlu -limslhpc_s -limsllapack_vendor -limslblas_vendor -limslp_err -Wl,--end-group -Wl,--start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -Wl,--end-group -Bdynamic -Xlinker -rpath -Xlinker $MKL_LIB_DIR"
+

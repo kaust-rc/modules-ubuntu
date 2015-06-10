@@ -1,0 +1,57 @@
+#%Module 1.0 -*- tcl -*-
+
+set VERSION [ file tail [ module-info name ] ]
+set NAME hdf5
+
+proc ModulesHelp { } {
+    global VERSION
+    global NAME
+    puts stderr "\tThis module loads $NAME version $VERSION\n"
+}
+
+module-whatis   "Add $NAME module"
+
+if [ regexp -nocase {mvapich2} $VERSION ] then {
+   prereq mpi/mvapich2
+} else {
+   prereq mpi-openmpi/1.4.3-gcc-4.6.0
+}
+
+if [ regexp -nocase {gpfs} $VERSION ] then {
+    if { [string first ".el5" [uname release]] == -1 } {
+        puts stderr "The HDF5 module with GPFS is intended for Noor only. Please use the HDF5 module without GPFS enabled."
+        exit 
+    }
+}
+
+if { [info exists env(HDF5_ROOT)] } {
+    set KAD $env(HDF5_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set KAD $env(KAUST_APPS_ROOT)/hdf5
+    } else {
+	set KAD /mnt/kaustapps/hdf5
+    }
+}
+
+setenv HDF5_DIR    $KAD/$VERSION/
+setenv HDF5_LIBDIR $KAD/$VERSION/lib 
+setenv HDF5_INCDIR $KAD/$VERSION/include 
+
+prepend-path PATH $KAD/$VERSION/bin
+prepend-path LD_LIBRARY_PATH $KAD/$VERSION/lib
+
+if {[catch {set myver [exec h5dump -V | awk "{ print \$3 }" ]} e]} {
+    global myver
+    set myver none
+}
+
+if { [ module-info mode load ] } {
+    puts stderr "Loading module for version '$VERSION' of $NAME"             
+    puts stderr "Current $NAME version: $myver"
+}
+if { [ module-info mode remove ] } {
+    puts stderr "Unloading module for version '$VERSION' of $NAME"             
+    puts stderr "Current $NAME version: $myver"
+}
+

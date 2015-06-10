@@ -1,0 +1,29 @@
+#%Module 1.0 -*- tcl -*-
+#
+# HYPERWORKS Module for use with 'environment-modules' package:
+# 
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+
+# Prereqs
+# prereq name
+
+# if { [string first ".fc11" [uname release]] == -1 } {
+#     puts stderr "$module_name is not currently supported on RedHat.  Please use $module_name on Fedora Workstation systems." 
+# #    exit 
+# }
+
+# Specific setup goes here, license files, path setup, etc
+#if { $version == 10.0 } {
+#	set          	ALTAIR	$app_dir/$version/altair
+#} else {
+	set		ALTAIR	$app_dir/altair
+#}
+setenv		ALTAIR_HOME	$ALTAIR
+prepend-path 	PATH 		$ALTAIR/scripts
+setenv		ALTAIR_LICENSE_PATH	27810@WTHFXNSR02

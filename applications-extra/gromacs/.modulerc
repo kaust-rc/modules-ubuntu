@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version gromacs/4.5.4-dp default

@@ -1,0 +1,29 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+
+set version [ file tail [ module-info name ] ]
+set name VASP
+
+if { [info exists env(VASP_ROOT)] } {
+    set app_dir $env(VASP_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/VASP
+    } else {
+	set app_dir /opt/share/VASP
+    }
+}
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup.tcl
+GeneralAppSetup
+
+prereq icc/11.1 
+prereq ifort/11.1
+prereq mpi-openmpi/1.4.2-intel-11
+
+prepend-path LD_LIBRARY_PATH $app_dir/v$version.app/KAUSTLIBS
+prepend-path PATH $app_dir/v$version.app/src/vasp.$version
+
+

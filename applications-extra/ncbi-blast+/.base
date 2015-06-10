@@ -1,0 +1,21 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for NCBI-BLAST+ use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup v${version}.app NCBI_BLAST_PLUS_ROOT
+
+# Additional conflicts
+#conflict name
+conflict ncbi-blast
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+
+
+
+
+

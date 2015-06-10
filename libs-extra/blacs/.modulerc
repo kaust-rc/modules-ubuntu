@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version blacs/1.1-openmpi-1.4.3-sse4.2 default

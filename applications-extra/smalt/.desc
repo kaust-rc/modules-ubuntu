@@ -1,0 +1,4 @@
+SMALT efficiently aligns DNA sequencing reads with a reference genome.
+Reads from a wide range of sequencing platforms, for example Illumina, Roche-454, Ion Torrent, PacBio or ABI-Sanger, can be processed including paired reads.
+
+

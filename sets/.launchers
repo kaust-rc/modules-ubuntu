@@ -1,0 +1,19 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}.app MATLAB_ROOT
+
+# Additional conflicts
+conflict matlab-faculty
+conflict matlab-classroom
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+
+
+

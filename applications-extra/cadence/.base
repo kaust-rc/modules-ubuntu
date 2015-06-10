@@ -1,0 +1,61 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  CADENCE module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+
+#if { [string first ".el5" [uname release]] == -1 } {
+#    puts stderr "$name is not currently supported on FC11.  Please use $name on Noor." 
+#    exit 
+#}
+
+# Specific setup goes here, license files, path setup, etc
+setenv      LM_LICENSE_FILE         27020@wthfxnsr03.kaust.edu.sa
+
+
+set 		CADENCE_MOD 		$app_dir
+setenv		CADENCE_MOD_PATH	$CADENCE_MOD
+
+# Set a default OS-Platform for Unsupported os!
+setenv      OA_UNSUPPORTED_PLAT linux_rhel40
+# Run on 64bit-mode
+setenv      CDS_AUTO_64BIT      ALL
+
+set             ASSURA_dir      [glob -nocomplain -directory $CADENCE_MOD ASSURA*]
+set             EDI_dir         [glob -nocomplain -directory $CADENCE_MOD EDI*]
+set             QRC_dir         [glob -nocomplain -directory $CADENCE_MOD EXT*]
+set             CDS_dir         [glob -nocomplain -directory $CADENCE_MOD IC*]
+set             MMSIM_dir       [glob -nocomplain -directory $CADENCE_MOD MMSIM*]
+set             IUS_dir         [glob -nocomplain -directory $CADENCE_MOD IUS*]
+
+prepend-path    ASSURAHOME      $ASSURA_dir
+prepend-path    EDIHOME         $EDI_dir
+prepend-path    QRC_HOME        $QRC_dir
+prepend-path    CDSHOME         $CDS_dir
+prepend-path    MMSIMHOME       $MMSIM_dir
+prepend-path    IU82            $IUS_dir
+
+
+prepend-path    ICPATH          $CDS_dir/tools/dfII/bin
+prepend-path    ASSURAPATH      $ASSURA_dir/bin
+prepend-path    QRCPATH	        $QRC_dir/bin
+prepend-path    MMSIMPATH       $MMSIM_dir/tools/spectre/bin
+prepend-path    EDIPATH	        $EDI_dir/bin
+prepend-path    IUPATH          $IUS_dir/tools.lnx86/bin
+prepend-path    OA_HOME              $CADENCE_MOD/IC610/share/oa
+
+prepend-path    PATH            $CDS_dir/tools/dfII/bin:$ASSURA_dir/bin:$QRC_dir/bin:$EDI_dir/bin:$MMSIM_dir/tools/spectre/bin:$IUS_dir/tools.lnx86/bin
+prepend-path    LD_LIBRARY_PATH $CADENCE_MOD/IC610/tools.lnx86/modelwriter/lib
+
+
+
+

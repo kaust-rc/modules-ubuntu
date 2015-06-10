@@ -1,0 +1,23 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+# Added due to directory structure change from v8.13.0 - Jun 2014 by moondh
+prepend-path PATH $app_dir/KAUST/bin
+prepend-path PATH $app_dir/totalview.${version}/bin
+setenv LM_LICENSE_FILE $app_dir/license.dat
+# Adding web browser path for Help files on workstations
+setenv TV_HTMLHELP_VIEWER /usr/bin/firefox
+

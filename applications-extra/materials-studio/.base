@@ -1,0 +1,71 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+set dir_name MATERIALSSTUDIO
+GeneralAppSetup v${version}.app MATERIALSSTUDIO_ROOT
+
+
+# Additional conflicts
+conflict materials-studio 
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+
+if { [string first ".el6" [uname release]] == -1 } {
+    puts stderr "Materials Studio is not supported on this platform. Please use it on a RHEL-based system (e.g. Noor)" 
+    exit 
+}
+
+setenv MATERIALS_STUDIO     $app_dir
+
+set ms_path_root $app_dir/etc
+
+set ms_amorphouscell	$ms_path_root/AmorphousCell/bin
+set ms_castep		$ms_path_root/CASTEP/bin
+set ms_dftb             $ms_path_root/DFTB/bin
+set ms_dftbpara         $ms_path_root/DFTBpara/bin
+set ms_discover		$ms_path_root/Discover/bin
+set ms_dmol3		$ms_path_root/DMol3/bin
+set ms_dpd		$ms_path_root/DPD/bin
+set ms_equilibria       $ms_path_root/Equilibria/bin
+set ms_gulp		$ms_path_root/GULP/bin
+set ms_kinetix          $ms_path_root/Kinetix/bin
+set ms_matserver        $ms_path_root/MatServer/bin
+set ms_mesodyn		$ms_path_root/MesoDyn/bin
+set ms_onetep		$ms_path_root/ONETEP/bin
+set ms_qmera		$ms_path_root/QMERA/bin
+set ms_vamp		$ms_path_root/VAMP/bin
+
+prepend-path LD_LIBRARY_PATH $app_dir/lib:$app_dir/lib/32:$app_dir/LicensePack/linux/lib
+prepend-path PATH $app_dir/LicensePack/linux/bin
+
+prepend-path PATH $app_dir/bin
+
+prepend-path PATH $ms_amorphouscell
+prepend-path PATH $ms_castep	
+prepend-path PATH $ms_dftb
+prepend-path PATH $ms_dftbpara
+prepend-path PATH $ms_discover	
+prepend-path PATH $ms_dmol3	
+prepend-path PATH $ms_dpd	
+prepend-path PATH $ms_equilibria
+prepend-path PATH $ms_gulp	
+prepend-path PATH $ms_kinetix
+prepend-path PATH $ms_matserver
+prepend-path PATH $ms_mesodyn	
+prepend-path PATH $ms_onetep	
+prepend-path PATH $ms_qmera	
+prepend-path PATH $ms_vamp	
+
+#setup MPI
+#prereq gcc
+#prereq mpi-openmpi
+
+prepend-path PATH $app_dir/hpmpi/opt/hpmpi/bin
+prepend-path LD_LIBRARY_PATH $app_dir/hpmpi/opt/hpmpi/lib/linux_amd64
+
+
