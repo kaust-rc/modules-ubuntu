@@ -28,7 +28,7 @@ source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
 #   GeneralAppSetup [suffix_dir] [app_dir_env],
 #       suffix_dir  : suffix directory path (default: v${version}.app)
 #       app_dir_env : application directory enviroment variable name (default: ${module_name_uc}_ROOT)
-GeneralAppSetup v2014.07.app ADFHOME
+GeneralAppSetup v2014.08.app ADFHOME
 
 # GeneralCompilerSetup:
 # Similar to GeneralAppSetup, 
@@ -55,11 +55,18 @@ GeneralAppSetup v2014.07.app ADFHOME
 setenv          ADFBIN        $app_dir/bin
 setenv          ADFRESOURCES  $app_dir/atomicdata
 setenv          SCMLICENSE    $app_dir/license.txt
-setenv          SCM_TMPDIR    /tmp
+
+if { [string first "Ubuntu" [uname release]] != -1 } {
+    # if Ubuntu is part of uname -a, we are on an Ubuntu workstation
+    setenv      SCM_TMPDIR    /tmp
+    system      cp -n /opt/share/ADF/KAUST/*.tid /home/$env(USER)/.scm_gui
+    puts stderr "ADF queues for Noor 1, Noor 2, and SMC are available." 
+}
+
+if { [string first ".el" [uname release]] != -1 } {
+    # if .el is part of uname -a, we are on the RedHat cluster
+    setenv      SCM_TMPDIR    /scratch/$env(USER)
+}
 
 prepend-path    PATH          $app_dir/bin
-
-
-
-
 

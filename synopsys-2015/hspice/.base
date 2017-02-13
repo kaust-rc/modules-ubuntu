@@ -1,0 +1,37 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup  
+ 
+
+# Specific setup goes here, license files, path setup, etc
+
+setenv SNPSLMD_LICENSE_FILE 		27200@WTHFXNSR03
+setenv LM_LICENSE_FILE			27200@WTHFXNSR03
+setenv SAED32_28_PDK 			/opt/share/synopsys/2015/share/lib/SAED3228nm_iPDK
+setenv SAED90_PDK 			/opt/share/synopsys/2015/share/lib/SAED_PDK90nm
+
+setenv TMIARCH 				RH
+setenv CDS_LOAD_ENV 			CSF
+setenv HSP_GCC_VERSION 			4.7.2
+setenv HSP_HOME				/opt/share/synopsys/2015/hspice/2014.09_sp2/hspice
+setenv LD_LIBRARY_PATH 			/opt/share/synopsys/2015/hspice/2014.09_sp2/hspice/amd64/interfaces
+setenv installdir 			/opt/share/synopsys/2015/hspice/2014.09_sp2/hspice
+#setenv X86SO
+setenv CMIARCH				RH
+prepend-path PATH                       /opt/share/synopsys/2015/hspice/2014.09_sp2/hspice/bin
+prepend-path PATH                       /opt/share/synopsys/2015/hspice/2014.09_sp2/hspice/GNU/rhel/gcc-4.7.2/bin
+prepend-path PATH                       /opt/share/synopsys/2015/hspice/2014.09_sp2/hspice/amd64
+setenv sixtyfourbit_flag 		1
+setenv XARCH 				amd64
+setenv BITFLAG				64
+setenv HSP_GCC 				/opt/share/synopsys/2015/hspice/2014.09_sp2/hspice/GNU/rhel/gcc-4.7.2/bin/gcc -m64
+setenv SNPS_64 				1
+setenv SNPS_PLATFORM 			amd64
+setenv mraarch 				amd64
+setenv ARCH 				amd64
+
+

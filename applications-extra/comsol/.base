@@ -15,6 +15,8 @@ GeneralAppSetup
 # Specific setup goes here, license files, path setup, etc
 prepend-path PATH $app_dir/bin
 prepend-path PATH $app_dir/kaustbin
+prepend-path PATH $app_dir/comsol52/multiphysics/bin
+prepend-path PATH $app_dir/lsf_wrapper
 #prepend-path MLROOT $env(KAUST_MATLAB_ROOT)
 
 

@@ -2,6 +2,9 @@
 #
 #  Module for use with 'environment-modules' package:
 # 
+# 17/02/16   MvW   Added setenv of XCRYSDEN_TOPDIR
+# This is necessary in order to get xcrysden to appear in w2web UI
+#
 source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
 GeneralAppSetup
 
@@ -15,3 +18,4 @@ GeneralAppSetup
 prepend-path PATH $app_dir
 prepend-path LD_LIBRARY_PATH $app_dir/KAUST/lib
 prepend-path MANPATH $app_dir/docs
+setenv       XCRYSDEN_TOPDIR        $app_dir

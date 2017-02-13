@@ -1,0 +1,55 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for AVIZO use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+if ![is-loaded applications-extra] {
+    module add applications-extra
+}
+prereq applications-extra
+
+if ![is-loaded compilers-extra] {
+    module add compilers-extra
+}
+prereq compilers-extra
+
+if ![is-loaded libs-extra] {
+    module add libs-extra
+}
+prereq libs-extra
+
+# Prereqs
+if ![is-loaded gcc/4.8.1] {
+    module add gcc/4.8.1
+}
+prereq gcc/4.8.1
+if ![is-loaded mpi-openmpi/1.8.6-gcc-4.8.1] {
+    module add mpi-openmpi/1.8.6-gcc-4.8.1
+}
+prereq mpi-openmpi/1.8.6-gcc-4.8.1
+if ![is-loaded cmake/3.2.3-gcc-4.8.1] {
+    module add cmake/3.2.3-gcc-4.8.1
+}
+prereq cmake/3.2.3-gcc-4.8.1
+if ![is-loaded python/2.7.10] {
+    module add python/2.7.10
+}
+prereq python/2.7.10
+if ![is-loaded boost/1.58.0] {
+    module add boost/1.58.0
+}
+prereq boost/1.58.0
+
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+prepend-path LD_LIBRARY_PATH $app_dir/lib
+prepend-path LD_LIBRARY_PATH $app_dir/lib/paraview-4.3
+prepend-path CPATH $app_dir/include
+prepend-path MANPATH $app_dir/share/man

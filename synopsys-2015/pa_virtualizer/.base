@@ -1,0 +1,49 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup synopsys/2015/pa_virtualizer/2015.03/J-2015.03/
+ 
+
+# Specific setup goes here, license files, path setup, etc
+
+setenv SNPSLMD_LICENSE_FILE 		27200@WTHFXNSR03
+setenv LM_LICENSE_FILE			27200@WTHFXNSR03
+setenv SAED32_28_PDK 			/opt/share/synopsys/2015/share/lib/SAED3228nm_iPDK
+setenv SAED90_PDK 			/opt/share/synopsys/2015/share/lib/SAED_PDK90nm
+
+
+setenv COWARE_MONITORS_PATH 		$app_dir/SLS/linux/IP
+setenv SNPS_VP_PRODUCT 			VAUTH
+setenv COWARE_AUX_BIN 			$app_dir/SLS/linux/common/bin
+setenv SNPS_VIEW_CONFIG_PATH 		$app_dir/SLS/linux/IP:$app_dir/SLS/linux/common/etc/viewconfig
+setenv COWARE_CXX_COMPILER 		gcc-4.7.2
+setenv SNPS_VP_DOC 			$app_dir/Documentation
+setenv VPExplorer_setup_already_ 	1
+setenv CWR_USING_LNX_KERNEL_THREADS 	1
+
+setenv LD_LIBRARY_PATH $app_dir/SLS/linux/dmtools/lib:$app_dir/SLS/linux/pc/lib:.:$app_dir/SLS/any/external_debuggers/plugins/common/gcc-4.7.2:$app_dir/SLS/linux/common/lib-any:$app_dir/SLS/linux/common/libso-gcc-4.7.2:$app_dir/SLS/linux/gnu/gcc-4.7.2/lib:$app_dir/SLS/linux/dmtools/lib:$app_dir/SLS/linux/pc/lib:.:$app_dir/SLS/any/external_debuggers/plugins/common/gcc-4.7.2:$app_dir/SLS/linux/common/lib-any:$app_dir/SLS/linux/common/libso-gcc-4.7.2:$app_dir/SLS/linux/gnu/gcc-4.7.2/lib::$app_dir/SLS/linux/dmtools/lib:/lib:$app_dir/SLS/linux/dmtools/lib:/lib
+
+setenv COWAREHOME 			$app_dir/SLS/linux
+
+setenv COWARE_PRODUCT			VAUTH
+setenv SNPS_VP_HOME 			$app_dir/SLS/linux
+
+prepend-path PATH $app_dir/SLS/linux/pc/bin:$app_dir/SLS/linux/InnoGUI/Innovator/Bin:$app_dir/SLS/linux/tools/bin:$app_dir/SLS/linux/pc/bin:$app_dir/SLS/linux/InnoGUI/Innovator/Bin:$app_dir/SLS/linux/tools/bin
+
+setenv SNPS_VP_HTYPE 			linux
+#setenv SNPS_VP_UBUNTU 
+
+setenv PCTHOME 				$app_dir/SLS/linux/pc
+setenv COWARE_JRE 			$app_dir/SLS/linux/../linux/java
+
+setenv COWAREDOC_INSTALLED_AT 		$app_dir/Documentation
+setenv SNPS_EXTERNAL_DEBUGGERS_HOME 	$app_dir/SLS/any/external_debuggers
+setenv COWAREHT linux
+
+
+
+
+

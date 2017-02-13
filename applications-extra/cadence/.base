@@ -19,7 +19,7 @@ GeneralAppSetup
 #}
 
 # Specific setup goes here, license files, path setup, etc
-setenv      LM_LICENSE_FILE         27020@wthfxnsr03.kaust.edu.sa
+setenv      LM_LICENSE_FILE         27020@wthflxsr03.kaust.edu.sa
 
 
 set 		CADENCE_MOD 		$app_dir

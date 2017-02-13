@@ -2,6 +2,9 @@
 source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
 GeneralAppSetup ${version}/$distro/$m_arch 
 
+
+prereq gcc/4.6.0
+
 # Specific setup goes here, license files, path setup, etc
 prepend-path PATH $app_dir/bin
 prepend-path MANPATH $app_dir/share/man

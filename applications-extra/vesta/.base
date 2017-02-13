@@ -1,0 +1,14 @@
+#%Module 1.0 -*- tcl -*-
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup v${version}.app VESTA_ROOT
+
+# Additional conflicts.
+
+prepend-path PATH $app_dir
+# RHEL 6.2, 6.5 images and Ubuntu images do not need this. 'string match' returns 1 if matches.
+if { [string first ".el" [uname release]] == -1 } {
+    # this platform is UBUNTU
+    setenv GTK_IM_MODULE xim
+    setenv LANG en_US.UTF-8
+}

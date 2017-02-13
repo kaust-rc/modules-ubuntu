@@ -35,7 +35,7 @@ setenv	FOAM_USER_APPBIN $env(HOME)/OpenFOAM-$version/platforms/linux64Gcc48DPOpt
 setenv	FOAM_USER_LIBBIN $env(HOME)/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib
 setenv	FOAM_UTILITIES	$app_dir/OpenFOAM-$version/applications/utilities
 setenv	GMP_ARCH_PATH		$app_dir/ThirdParty-$version/platforms/linux64/gmp-5.1.2
-setenv	LD_LIBRARY_PATH	$app_dir/ThirdParty-$version/platforms/linux64Gcc48/boost_1_54_0/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/CGAL-4.3/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/gperftools-svn/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/ParaView-4.1.0/lib/paraview-4.1:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib/openmpi-1.6.5:$app_dir/ThirdParty-$version/platforms/linux64Gcc48DPOpt/lib/openmpi-1.6.5:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/lib64:$app_dir/ThirdParty-$version/platforms/linux64/mpc-1.0.1/lib:$app_dir/ThirdParty-$version/platforms/linux64/mpfr-3.1.2/lib:$app_dir/ThirdParty-$version/platforms/linux64/gmp-5.1.2/lib:$app_dir/ThirdParty-$version/platforms/linux64/gcc-4.8.1/lib64:$env(HOME)/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/site/$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib/d
+setenv	LD_LIBRARY_PATH	$app_dir/ThirdParty-$version/platforms/linux64Gcc48/boost_1_54_0/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/CGAL-4.3/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/gperftools-svn/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/ParaView-4.1.0/lib/paraview-4.1:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib/openmpi-1.6.5:$app_dir/ThirdParty-$version/platforms/linux64Gcc48DPOpt/lib/openmpi-1.6.5:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/lib64:$app_dir/ThirdParty-$version/platforms/linux64/mpc-1.0.1/lib:$app_dir/ThirdParty-$version/platforms/linux64/mpfr-3.1.2/lib:$app_dir/ThirdParty-$version/platforms/linux64/gmp-5.1.2/lib:$app_dir/ThirdParty-$version/platforms/linux64/gcc-4.8.1/lib64:$env(HOME)/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/site/$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/ThirdParty-$version/platforms/linux64Gcc48DPOpt/lib:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/lib/dummy
 setenv	MPFR_ARCH_PATH	$app_dir/ThirdParty-$version/platforms/linux64/mpfr-3.1.2
 setenv	MPI_ARCH_PATH	$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5
 setenv	MPI_BUFFER_SIZE	20000000
@@ -71,3 +71,13 @@ setenv	WM_THIRD_PARTY_DIR	$app_dir/ThirdParty-$version
 
 prepend-path	MANPATH	$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/share/man:$app_dir/ThirdParty-$version/platforms/linux64/gcc-4.8.1/man
 prepend-path	PATH	$app_dir/ThirdParty-$version/platforms/linux64Gcc48/gperftools-svn/bin:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/ParaView-4.1.0/bin:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/cmake-2.8.12.1/bin:$app_dir/ThirdParty-$version/platforms/linux64Gcc48/openmpi-1.6.5/bin:$app_dir/ThirdParty-$version/platforms/linux64/gcc-4.8.1/bin:$env(HOME)/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/bin:$app_dir/site/$version/platforms/linux64Gcc48DPOpt/bin:$app_dir/OpenFOAM-$version/platforms/linux64Gcc48DPOpt/bin:$app_dir/OpenFOAM-$version/bin:$app_dir/OpenFOAM-$version/wmake
+## Modified by hassanns on Jun 15, 2015 to add paraview support
+prepend-path PATH $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/bin
+prepend-path LD_LIBRARY_PATH $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/lib
+prepend-path LIBRARY_PATH $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/lib
+prepend-path LD_RUN_PATH $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/lib
+prepend-path CPATH $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/include
+
+setenv QTDIR $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4
+setenv QTINC $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/include
+setenv QTLIB $app_dir/ThirdParty-$version/platforms/linux64Gcc48/qt-4.8.4/lib

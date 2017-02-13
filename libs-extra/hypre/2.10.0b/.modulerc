@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version hypre/2.10.0b default

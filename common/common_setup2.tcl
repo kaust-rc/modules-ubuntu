@@ -88,6 +88,57 @@ proc SetWhatis {} {
     module-whatis   "$desc_file"
 }
 
+
+
+proc WS_CURL_LOG {} {
+    set hostname [exec hostname]
+    set hn [string range $hostname 0 1]
+
+    if {[string equal $hn kw]} {
+
+        set module "$::module_name-$::version"
+        set hostname [exec hostname]
+        set user [exec whoami]
+
+        #Needs a machine that all workstations can connect to
+        catch {exec bash -c "curl --connect-timeout 1 http://10.126.106.39:8887/wslog/$module/$hostname/$user/ 2>/dev/null "}
+        catch {exec bash -c "curl --connect-timeout 1 http://10.126.106.12:8887/wslog/$module/$hostname/$user/ 2>/dev/null "}
+        #puts stderr "loading $module"
+    }
+}
+
+
+proc WriteLog {} {
+    set hostname [exec hostname]
+    set hn [string range $hostname 0 1]
+
+    if {[string equal $hn kw]} {
+
+        set hostname [exec hostname]
+        set logdir /var/log/rc
+        set user [exec whoami]
+
+
+        set logfile "/var/log/rc/module_log_${hostname}_${user}"
+
+#   set logfile "/var/log/rc/rcapps_modules_load.log"
+#   set logfile "/tmp/rcapps_modules_load.log"
+
+
+    if {[file exists $logdir]} {
+        set date [exec date]
+        set data "$date  $hostname  $user  $::module_name $::version"
+
+        set fileId [open $logfile "a"]
+        puts $fileId $data
+        close $fileId
+
+#        puts stderr "$logfile => $data"
+    } 
+  }
+}
+
+
 proc ReportModuleUsage {} {
     global loading
     global unloading
@@ -103,6 +154,8 @@ proc ReportModuleUsage {} {
             puts stderr "Unloading module $::module_name version $::version"
         }
     }
+
+    WS_CURL_LOG
 }
 
 proc ReportIntelVersion {} {
@@ -125,6 +178,8 @@ proc ReportIntelVersion {} {
 #    conflict $::module_name
 #}
 
+
+
 proc GeneralAppSetup { { suffix_dir 0 } { app_dir_env 0 }   } {
     proc ModulesHelp { } {
         GeneralModulesHelp
@@ -142,19 +197,27 @@ proc GeneralAppSetup { { suffix_dir 0 } { app_dir_env 0 }   } {
     conflict $::module_name
 }
 
-
 proc GeneralCompilerSetup { { suffix_dir 0 } { app_dir_env 0 }   } {
     if { $suffix_dir ==0} { set suffix_dir ${::version}/${::distro} }
     GeneralAppSetup $suffix_dir $app_dir_env
 }
-
 
 proc GeneralLibSetup  { { suffix_dir 0 } { app_dir_env 0 }   } {
     if { $suffix_dir ==0} { set suffix_dir ${::version}/${::distro}/${::m_arch} }
     GeneralAppSetup $suffix_dir $app_dir_env
 }
 
-
+proc AddDeps { csv_list } {
+    # Process dependancies
+    set modules_to_load [split $csv_list ","]
+    foreach line $modules_to_load {
+        if {$line != ""} {
+            set line [string trim $line]
+            if ![is-loaded $line] {
+                module add $line
+            }
+        }
+    }
+}
 
 checkLicense
-

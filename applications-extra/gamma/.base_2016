@@ -1,0 +1,53 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+# TODO: need to be review, when a newer version is install. To standardize the installtion tree
+set GAMMA_HOME   	$app_dir
+set MSP_HOME		$GAMMA_HOME/MSP
+set ISP_HOME       	$GAMMA_HOME/ISP
+set DIFF_HOME       	$GAMMA_HOME/DIFF
+set DISP_HOME       	$GAMMA_HOME/DISP
+set LAT_HOME       	$GAMMA_HOME/LAT
+set IPTA_HOME     	$GAMMA_HOME/IPTA
+set GDAL_TOOLS		$GAMMA_HOME/gdal-1.7.2/1.7.2
+set FFTW		$GAMMA_HOME/fftw-3.3.5/3.3.5
+
+prepend-path    PATH        $MSP_HOME/bin
+prepend-path    PATH        $ISP_HOME/bin
+prepend-path    PATH        $DIFF_HOME/bin
+prepend-path    PATH        $DISP_HOME/bin
+prepend-path    PATH        $LAT_HOME/bin
+prepend-path    PATH        $IPTA_HOME/bin
+
+prepend-path    PATH        $GDAL_TOOLS/bin
+prepend-path    PATH	    $FFTW/bin
+
+prepend-path    PATH        $MSP_HOME/scripts
+prepend-path    PATH        $ISP_HOME/scripts
+prepend-path    PATH        $DIFF_HOME/scripts
+prepend-path    PATH        $LAT_HOME/scripts
+prepend-path    PATH        $IPTA_HOME/scripts
+
+prepend-path    LD_LIBRARY_PATH  	$GAMMA_HOME/lib
+prepend-path    LD_LIBRARY_PATH  	$GDAL_TOOLS/lib
+prepend-path    LIBRARY_PATH  		$GDAL_TOOLS/lib
+prepend-path    CPATH		  	$GDAL_TOOLS/include
+
+prepend-path    LD_LIBRARY_PATH  	$FFTW/lib
+prepend-path    LIBRARY_PATH		$FFTW/lib
+prepend-path    CPATH			$FFTW/include
+
+#Raster Image Format
+#setenv GAMMA_RASTER		SUN_RASTER
+#set GAMMA_RASTER		BMP

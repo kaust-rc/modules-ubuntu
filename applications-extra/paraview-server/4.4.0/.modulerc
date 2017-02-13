@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version paraview-server/4.4.0/openmpi-1.8.3-intel-15 default

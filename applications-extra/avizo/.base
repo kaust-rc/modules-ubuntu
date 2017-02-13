@@ -2,7 +2,7 @@
 #
 #  Module for AVIZO use with 'environment-modules' package:
 # 
-source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+source [file dirname $::ModulesCurrentModulefile]/../../common/setup.tcl
 GeneralAppSetup
 
 # Additional conflicts

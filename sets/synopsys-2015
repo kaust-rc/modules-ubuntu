@@ -1,0 +1,29 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+set name synopsys-2015
+set version 2015 
+
+proc ModulesHelp { } {
+    global version
+    global name
+    puts stderr "\tThis module loads $name version $version\n"
+}
+
+module-whatis   "Add $name module"
+
+append-path  MODULEPATH                      /opt/share/modules/synopsys-2015/
+
+ if { [module-info mode load] } {
+   puts stderr "Loading module for $name"
+   puts stderr "Synopsys-2015 modules now loaded"
+   set-alias CDE {module load synopsys-2015 && module load customdesigner && cdesigner}
+ }
+
+
+ if { [module-info mode remove] } {
+    puts stderr "Unloading module for $name"
+    puts stderr "Synopsys-2015 modules now unloaded"
+ }
+

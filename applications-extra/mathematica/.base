@@ -5,11 +5,7 @@
 source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
 GeneralAppSetup
 
-# Additional conflicts
-
-# Prereqs
-# prereq name
-
-
 # Specific setup goes here, license files, path setup, etc
 prepend-path PATH $app_dir/Executables
+
+setenv MATHEMATICA_BASE [file dirname $app_dir]/common/base

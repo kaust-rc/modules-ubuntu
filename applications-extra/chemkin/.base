@@ -22,7 +22,8 @@ setenv CHEMKIN_DIR	$CHEMKIN_DIR
 setenv CHEMKIN_VERS	$version
 setenv CHEMKIN_BIN	$CHEMKIN_BIN
 setenv CHEMKIN_RELEASE_NUMBER	"Release $version "
-setenv REACTION_LICENSE_FILE	"28851@10.254.1.90"
+#setenv REACTION_LICENSE_FILE	"28851@10.254.1.90"
+setenv REACTION_LICENSE_FILE	"28850@wthfxnsr05.kaust.edu.sa"
 
 # Basically $CHEMKIN_DIR/bin is all that's needed in $PATH as it contains scripts to submit chemkinpro job to Noor and separate script to run it on WS - moondh
 prepend-path PATH $CHEMKIN_DIR/bin:$CHEMKIN_BIN

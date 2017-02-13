@@ -47,7 +47,20 @@ prepend-path INFOPATH $app_dir/share/info
 set myver [exec gcc --version | head -n1 | awk "{ print \$3 }" ]
 puts stderr "Current $module_name version: $myver"
 
+# Modified by hassanns on Jun,18 2015 to correct the CPATH variable
+
+#prepend-path CPATH /usr/include/sys
+#prepend-path CPATH /usr/include/x86_64-linux-gnu
+#prepend-path CPATH $app_dir/include
+#prepend-path CPATH $app_dir/lib/$module_name/$arch/$version/include
+#prepend-path CPATH $app_dir/lib/$module_name/$arch/$version/include/c++
+#prepend-path CPATH $app_dir/lib/$module_name/$arch/$version/include/c++/tr1
+#prepend-path CPATH $app_dir/lib/$module_name/$arch/$version/include-fixed
+
+# RHEL 6.2, 6.5 images and Ubuntu images do not need this. 'string match' returns 1 if matches.
+# if { [string first ".el" [uname release]] == -1 } {
+#      this platform is UBUNTU
 # Ubuntu hotfix!
 # TODO: check OS
-prepend-path CPATH /usr/include/x86_64-linux-gnu
-
+     prepend-path CPATH /usr/include/x86_64-linux-gnu
+#             }

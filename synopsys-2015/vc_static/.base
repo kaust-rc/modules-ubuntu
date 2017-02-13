@@ -1,0 +1,21 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup synopsys/2015/vc_static/vJ-2014.12-SP1
+ 
+
+# Specific setup goes here, license files, path setup, etc
+
+setenv SNPSLMD_LICENSE_FILE 		27200@WTHFXNSR03
+setenv LM_LICENSE_FILE			27200@WTHFXNSR03
+setenv SAED32_28_PDK 			/opt/share/synopsys/2015/share/lib/SAED3228nm_iPDK
+setenv SAED90_PDK 			/opt/share/synopsys/2015/share/lib/SAED_PDK90nm
+setenv VC_STATIC_HOME			$app_dir
+prepend-path  PATH              	$app_dir/bin
+
+
+
+
