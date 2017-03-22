@@ -1,2 +1,2 @@
 #%Module 1.0 -*- tcl -*-
-module-version matlab/R2015a default
+module-version matlab/R2016b default
