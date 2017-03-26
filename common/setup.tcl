@@ -13,6 +13,12 @@ set curpath [file dirname $::ModulesCurrentModulefile]
 set ::module_extra_dir [regsub {/(applications|compilers|libs)/} $curpath {/\1-extra/}]
 set ::dir_name $::module_name
 
+
+# Log what's happening
+exec $env(KAUST_MODULES_ROOT)/common/log.sh --mode [module-info mode] \
+     --name [module-info name] --path $ModulesCurrentModulefile &
+
+
 proc getDirName { appsroot appname } {
     set dirlist [glob -nocomplain -directory $appsroot -tails *]
     return [lsearch -inline -nocase [split $dirlist] $appname]
@@ -21,13 +27,13 @@ proc getDirName { appsroot appname } {
 proc checkLicense {} {
     global module_extra_dir
 
-    if [file exists "$module_extra_dir/.nolicense"] { 
+    if [file exists "$module_extra_dir/.nolicense"] {
        puts stderr "\033\[7;31;31m"
        puts stderr "License has expired!"
        puts stderr ""
        puts stderr "* For more information, please contact IT Software Solutions Office:"
        puts stderr ""
-       puts stderr "\tsso@kaust.edu.sa" 
+       puts stderr "\tsso@kaust.edu.sa"
        puts stderr "\033\[m"
        exit 1
     }
@@ -38,10 +44,10 @@ proc SetAppDir { suffix_dir { app_dir_env 0 } } {
     regsub -all {[\-]} ${::module_name_uc} "_" KAUST_APPNAME
     setenv KAUST_APPNAME ${KAUST_APPNAME}
 
-    if { $app_dir_env == 0 } { 
+    if { $app_dir_env == 0 } {
         set app_dir_env ${KAUST_APPNAME}_ROOT
     }
-    
+
     # app_root
     if { [info exists ::env(KAUST_APPS_ROOT)] } {
        set ::apps_root $::env(KAUST_APPS_ROOT)
@@ -100,7 +106,7 @@ proc ReportIntelVersion {} {
     global current_version
     if {[catch {set current_version [exec $::module_name --version | head -n1 | awk "{ print \$3 }" ]} e]} {
         set current_version none
-    } 
+    }
 
     puts stderr "Current $::module_name version: $current_version"
 }
