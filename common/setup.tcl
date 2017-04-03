@@ -15,8 +15,8 @@ set ::dir_name $::module_name
 
 
 # Log what's happening
-blt::bgexec $env(KAUST_MODULES_ROOT)/common/log.sh --mode [module-info mode] \
-     --name [module-info name] --path $ModulesCurrentModulefile
+exec $env(KAUST_MODULES_ROOT)/common/log.sh --mode [module-info mode] \
+     --name [module-info name] --path $ModulesCurrentModulefile &
 
 
 proc getDirName { appsroot appname } {
