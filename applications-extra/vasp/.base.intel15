@@ -1,7 +1,0 @@
-#%Module 1.0 -*- tcl -*-
-
-source [file dirname $::ModulesCurrentModulefile]/../../common/setup.tcl 
-GeneralAppSetup "v$::version.app"
-
-AddDeps "compilers-extra, applications-extra, intel/15, mpi-openmpi/1.8.3-intel-15"
-prepend-path PATH $app_dir/bin

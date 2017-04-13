@@ -1,2 +1,0 @@
-#%Module 1.0 -*- tcl -*-
-module-version blas/1.1-sse4.2 default

@@ -1,2 +1,0 @@
-#%Module 1.0 -*- tcl -*-
-module-version mpi-openmpi/1.4.3-gcc-4.6.0 default

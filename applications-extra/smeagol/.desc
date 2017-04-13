@@ -1,2 +1,0 @@
-Smeagol is an ab initio electronic transport code based on a combination of Density Functional Theory (DFT) and Non-Equilibrium Green's function transport methods (NEGF). It has been designed to describe two terminal nanoscale devices, for which the potential drop must be calculated accurately.
-

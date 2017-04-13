@@ -1,2 +1,0 @@
-#%Module 1.0 -*- tcl -*-
-module-version fftw2/2.1.5-openmpi-1.4.3-sse4.2-dp default

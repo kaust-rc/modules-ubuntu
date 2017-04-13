@@ -1,5 +1,0 @@
-## This file is sourced form other files in the .spec directory
-
-prepend-path LD_LIBRARY_PATH $app_dir/lib
-prepend-path LIBRARY_PATH $app_dir/lib
-prepend-path CPATH $app_dir/include

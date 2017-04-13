@@ -1,5 +1,0 @@
-Kwant is a Python package for numerical calculations on tight-binding models with a strong focus on quantum transport. It is designed to be flexible and easy to use. Thanks to the use of innovative algorithms, Kwant is often faster than other available codes, even those entirely written in the low level FORTRAN and C/C++ languages.
-
-Tight-binding models can describe a vast variety of systems and phenomena in quantum physics. Therefore, Kwant can be used to simulate metals, graphene, topological insulators, quantum Hall effect, superconductivity, spintronics, molecular electronics, any combination of the above, and many other things.
-
-Kwant does not use the traditional input files often found in scientific software packages. Instead, one writes short programs in the powerful yet easy-to-learn Python language. These programs define a system and calculate its quantum properties (conductance, density of states, etc).
