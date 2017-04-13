@@ -1,0 +1,4 @@
+Mar. 3, 2015
+by moondh
+
+ANSYS seems to have many hardcoded path in their executables which broke the module file and their directory structure is wacky (eg. /opt/share/ANSYS/v15.0.7/v150). So the module files were created for each version.

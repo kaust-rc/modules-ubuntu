@@ -1,0 +1,14 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+prereq ifort/11.1.075
+
+set             WIENROOT            ${app_dir}
+setenv          WIENROOT            ${app_dir}
+
+prepend-path    STRUCTEDIT_PATH     $WIENROOT/SRC_structeditor/bin
+prepend-path    PATH                $WIENROOT
+
+setenv          SCRATCH             ./
+

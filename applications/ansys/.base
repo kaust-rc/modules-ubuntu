@@ -1,0 +1,33 @@
+#%Module 1.0 -*- tcl -*-
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/setup.tcl
+GeneralAppSetup
+
+set firstDotIndex [string first . $version]
+set lastDotIndex [string last . $version]
+if { $lastDotIndex == $firstDotIndex } {
+    set lastDotIndex [string length $version]
+    incr lastDotIndex 1
+}
+set major [string range $version 0 $firstDotIndex-1]
+set minor [string range $version $firstDotIndex+1 $lastDotIndex-1]
+set versionDir "$app_dir/v$major$minor"
+
+# The kfluent script needs to know which version is using it
+setenv ANSYS_VER $version
+
+# The licensing scripts/files need to be in the PATH
+prepend-path PATH $app_dir/shared_files/licensing/lic_admin
+
+# This is where ICEMCFD lives
+prepend-path PATH $versionDir/icemcfd/linux64_amd/bin
+
+# This is where FLUENT lives
+setenv FLUENT_INC $versionDir/fluent
+prepend-path PATH $versionDir/fluent/bin
+
+# This is where Workbench lives
+prepend-path PATH $versionDir/Framework/bin/Linux64
+
+# This iw where common scripts used in Slurm can be found
+prepend-path PATH /opt/share/ansys/common/bin

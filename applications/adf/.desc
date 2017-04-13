@@ -1,0 +1,6 @@
+ADF (Amsterdam Density Functional) is a Fortran program for calculations on atoms and molecules (in gas
+phase or solution). It can be used for the study of such diverse fields as molecular spectroscopy, organic
+and inorganic chemistry, crystallography and pharmacochemistry. A separate program BAND is available for
+the study of periodic systems: crystals, surfaces, and polymers. The COSMO-RS program is used for
+calculating thermodynamic properties of (mixed) fluids.
+

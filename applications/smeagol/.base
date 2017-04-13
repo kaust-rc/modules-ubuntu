@@ -1,0 +1,33 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  SMEAGOL Module for use with 'environment-modules' package:
+# 
+
+set version 1.0b
+set name SMEAGOL
+
+if { [string first ".el5" [uname release]] == -1 } {
+    puts stderr "$name is not currently supported on FC11.  Please use $name on Noor." 
+    exit 
+}
+
+if { [info exists env(SMEAGOL_ROOT)] } {
+    set app_dir $env(SMEAGOL_ROOT)
+} else {
+    if { [info exists env(KAUST_APPS_ROOT)] } {
+	set app_dir $env(KAUST_APPS_ROOT)/SMEAGOL
+    } else {
+	set app_dir /opt/share/SMEAGOL
+    }
+}
+
+source $env(KAUST_MODULES_ROOT)/common/common_setup.tcl
+GeneralAppSetup
+
+prereq gcc/4.6.0
+prereq mpi-openmpi/1.4.3-gcc-4.6.0
+
+prepend-path 	LD_LIBRARY_PATH		$app_dir/v$version.app/KAUSTLIBS/RHEL5
+prepend-path 	PATH 			$app_dir/v$version.app/bin
+
+

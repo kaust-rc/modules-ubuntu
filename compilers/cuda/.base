@@ -1,0 +1,22 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}/$distro/$m_arch 
+
+set VERSION ${version}
+set NAME CUDA
+set CUDA_PATH /opt/share/cuda/${version}/el6/x86_64
+set ROOTDIR /opt/share/cuda/${version}/el6/x86_64
+setenv  CUDA_INSTALL_PATH $ROOTDIR
+setenv  CUDADIR /opt/share/cuda/${version}/el6/x86_64
+
+prepend-path  PATH        $ROOTDIR/bin
+prepend-path  LD_LIBRARY_PATH $ROOTDIR/lib64
+prepend-path  LD_LIBRARY_PATH $ROOTDIR/lib
+prepend-path  INCDIR $ROOTDIR/include
+prepend-path  INCLUDE $ROOTDIR/include 
+prepend-path  LIBDIR $ROOTDIR/lib64
+prepend-path  LIBDIR $ROOTDIR/lib
+prepend-path  PATH   $ROOTDIR/samples/bin/x86_64/linux/release
+
+
+

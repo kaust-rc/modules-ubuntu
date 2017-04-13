@@ -1,0 +1,2 @@
+PGI compiler suite.  Currently only pgf90, the interface to the Portland Group Fortran 90
+compiler, is licensed at KAUST.

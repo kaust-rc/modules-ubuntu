@@ -1,0 +1,22 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for perl use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+# kwant built on top of its own python installation
+conflict python
+
+# Prereqs
+prereq gcc 
+prereq atlas
+prereq mpi-openmpi
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH 		$app_dir/bin
+prepend-path LD_LIBRARY_PATH 	$app_dir/lib
+prepend-path MANPATH 		$app_dir/share/man
+
+

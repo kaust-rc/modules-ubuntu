@@ -1,0 +1,25 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+# Source common KAUST setup
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+
+# GeneralAppSetup :
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path LM_LICENSE_FILE "1717@wthfxnsr03.kaust.edu.sa"
+prepend-path PATH $app_dir/bin
+
+
+
+
+

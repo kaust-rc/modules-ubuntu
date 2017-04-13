@@ -1,0 +1,22 @@
+#%Module 1.0 -*- tcl -*-
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup
+
+prereq cuda
+
+setenv CAPS_HOME $app_dir
+setenv HMPP_HOME $app_dir
+setenv HMPP_INC_PATH $app_dir/include
+setenv HMPP_LIB_PATH $app_dir/lib
+setenv HMPP_BIN_PATH $app_dir/bin
+setenv HMPP_MAN_PATH $app_dir/man
+setenv CAPS_LICENSE_PATH 6201@WTHFXNSR02
+
+prepend-path PATH $app_dir/bin
+prepend-path PATH $app_dir/licenses
+prepend-path LD_LIBRARY_PATH $app_dir/lib
+prepend-path MANPATH $app_dir/man
+prepend-path MANPATH $app_dir/doc/hmpprt-doxygen/cxx/man
+
+
+

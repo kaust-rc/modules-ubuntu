@@ -1,0 +1,16 @@
+#%Module 1.0 -*- tcl -*-
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup ${version}.app MATLAB_ROOT
+
+# Additional conflicts
+conflict matlab-faculty
+conflict matlab-classroom
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+prepend-path PATH $app_dir/KAUST/bin
+
+setenv LM_LICENSE_FILE $app_dir/licenses/network.lic
+file mkdir $::env(HOME)/Documents/MATLAB
+setenv MATLABPATH $::env(HOME)/Documents/MATLAB:[file dirname $app_dir]/common/kmat

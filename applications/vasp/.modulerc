@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version vasp/5.3.5 default

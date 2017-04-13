@@ -1,0 +1,18 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/setup.tcl 
+#set       ::dir_name         r
+GeneralAppSetup
+
+# Prereqs
+AddDeps "intel/15"
+# prereq changes since v3.x 
+set app_dir $app_dir/intel-2015
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH $app_dir/bin
+prepend-path LD_LIBRARY_PATH $app_dir/lib64
+prepend-path MANPATH $app_dir/share

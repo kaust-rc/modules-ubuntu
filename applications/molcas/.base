@@ -1,0 +1,27 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup v${version}.app MOLCAS_ROOT
+
+
+# Additional conflicts
+# need to check if any conflicts exist
+# Prereqs
+# prereq name
+prereq gcc/4.8.1
+
+# Specific setup goes here, license files, path setup, etc
+# Alias
+prepend-path    PATH $app_dir/build
+prepend-path    PATH $app_dir/bin
+setenv		MOLCAS $app_dir
+setenv		MOLCAS_CPUS 8
+
+## OPENMPI
+prepend-path	PATH	$app_dir/thirdparty/openmpi/bin
+prepend-path	MANPATH	$app_dir/thirdparty/openmpi/share/man
+prepend-path	LD_LIBRARY_PATH	$app_dir/thirdparty/openmpi/lib
+prepend-path	LIBRARY_PATH	$app_dir/thirdparty/openmpi/lib
+prepend-path	CPATH	$app_dir/thirdparty/openmpi/include

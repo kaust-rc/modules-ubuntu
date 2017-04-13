@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version boost/1.57.0 default

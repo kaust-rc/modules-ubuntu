@@ -1,0 +1,63 @@
+#%Module 1.0 -*- tcl -*-
+
+source $env(KAUST_MODULES_ROOT)/common/setup.tcl
+GeneralAppSetup
+
+#PATH FOR ABINIT (abinit)
+prepend-path     PATH $app_dir/ABINIT/bin
+prepend-path     PATH $app_dir/ABINIT/Psps
+prepend-path     LD_LIBRARY_PATH $app_dir/ABINIT/lib
+prepend-path 	 LIBRARY_PATH $app_dir/ABINIT/lib
+
+
+#PATH FOR LAMMPS (lammps)
+
+prepend-path     PATH $app_dir/LAMMPS
+
+#PATH FOR MAPS (maps)
+
+prepend-path     PATH $app_dir/MAPS-3.4/bin
+prepend-path     PATH $app_dir/MAPS-3.4/bin/Linux
+prepend-path     LD_LIBRARY_PATH $app_dir/MAPS-3.4/lib
+
+setenv           LANG C
+setenv           BABEL_LIBDIR $app_dir/MAPS-3.4/OpenBabel/lib/openbabel/2.3.2
+
+prepend-path     LD_LIBRARY_PATH $app_dir/MAPS-3.4/lib
+setenv           MAPSPATH $app_dir/MAPS-3.4
+setenv 		 MAPSFILTERPATH $app_dir/MAPS-3.4/bin
+
+
+
+#PATH FOR MNDO (mndo99)
+
+prepend-path     PATH $app_dir/MNDO
+
+#PATH FOR NAMD (namd2)
+
+prepend-path     PATH $app_dir/NAMD
+prepend-path     LIBRARY_PATH $app_dir/NAMD/lib
+prepend-path     LD_LIBRARY_PATH $app_dir/NAMD/lib
+prepend-path     LD_RUN_PATH $app_dir/NAMD/lib
+setenv           NAMD_DIR $app_dir/NAMD
+
+#PATH FOR PYTHON (python)
+
+prepend-path     PATH $app_dir/Python/bin
+prepend-path     LIBRARY_PATH $app_dir/Python/lib
+prepend-path     LD_LIBRARY_PATH $app_dir/Python/lib
+
+#PATH FOR QMPOT (qmpot)
+
+prepend-path     PATH $app_dir/QmPot
+
+
+#PATH FOR TURBOMOLE
+setenv TURBODIR $app_dir/TURBOMOLE
+set sysname [exec $app_dir/TURBOMOLE/scripts/sysname]
+setenv TURBOMOLE_SYSNAME $sysname
+prepend-path PATH $app_dir/TURBOMOLE/bin/$sysname
+prepend-path PATH $app_dir/TURBOMOLE/scripts
+
+
+     

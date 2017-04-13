@@ -1,0 +1,31 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+# prereq name
+
+
+# Specific setup goes here, license files, path setup, etc
+set 	CHEMKIN_DIR	$app_dir
+set 	CHEMKIN_BIN1	$CHEMKIN_DIR/chemkin$version
+set 	CHEMKIN_BIN2	"_linuxx8664/bin"
+set	CHEMKIN_BIN	$CHEMKIN_BIN1$CHEMKIN_BIN2
+
+setenv CHEMKIN_DIR	$CHEMKIN_DIR
+setenv CHEMKIN_VERS	$version
+setenv CHEMKIN_BIN	$CHEMKIN_BIN
+setenv CHEMKIN_RELEASE_NUMBER	"Release $version "
+#setenv REACTION_LICENSE_FILE	"28851@10.254.1.90"
+setenv REACTION_LICENSE_FILE	"28850@wthfxnsr05.kaust.edu.sa"
+
+# Basically $CHEMKIN_DIR/bin is all that's needed in $PATH as it contains scripts to submit chemkinpro job to Noor and separate script to run it on WS - moondh
+prepend-path PATH $CHEMKIN_DIR/bin:$CHEMKIN_BIN
+
+

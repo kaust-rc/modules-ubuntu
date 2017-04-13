@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version hypre/2.10.0b/mpi-openmpi-1.4.3-gcc-4.6.0 default

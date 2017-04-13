@@ -1,0 +1,17 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+# Additional conflicts
+
+# Prereqs
+prereq gcc 
+prereq mpi-openmpi/1.4.3-gcc-4.6.0 
+prereq atlas/3.8.4-sse3
+
+# Specific setup goes here, license files, path setup, etc
+prepend-path PATH 		$app_dir
+

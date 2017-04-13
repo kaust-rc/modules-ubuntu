@@ -1,0 +1,28 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+#
+
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl 
+GeneralAppSetup
+
+# Additional conflicts
+#conflict name
+
+# Prereqs
+prereq mpi-openmpi
+
+
+# Specific setup goes here, license files, path setup, etc
+#prepend-path PATH $app_dir/bin
+#setenv LM_LICENSE_FILE $app_dir/license.dat
+
+prepend-path    PATH            $app_dir/bin
+setenv          MPIBLAST_SHARED /scratch/$env(USER)/mpiblast-shared
+setenv          MPIBLAST_LOCAL  /tmp/$env(USER)/mpiblast-local
+setenv          BLASTMAT        $app_dir/ncbi/data
+# MANPATH doesen't have useful man pages for mpiblast
+#setenv		MANPATH		$app_dir/ncbi/doc/man
+
+
+

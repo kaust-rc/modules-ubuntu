@@ -1,0 +1,11 @@
+#%Module 1.0 -*- tcl -*-
+#
+#  Module for use with 'environment-modules' package:
+# 
+source [file dirname $::ModulesCurrentModulefile]/../../common/common_setup2.tcl
+GeneralAppSetup
+
+setenv          MCOSMLD_LICENSE_FILE    54000@WTHFXNSR05
+
+prepend-path    PATH               $app_dir/Coventor/MEMS+6/bin
+

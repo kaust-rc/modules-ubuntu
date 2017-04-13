@@ -1,0 +1,2 @@
+#%Module 1.0 -*- tcl -*-
+module-version libgtextutils/0.7 default
