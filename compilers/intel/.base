@@ -7,12 +7,6 @@ GeneralAppSetup INTEL/v${version}.app KAUST_INTEL_ROOT
 
 set app_dir $::env(KAUST_APPS_ROOT)/INTEL/v$version.app
 
-#/$module_name/release 
-
-
-#        set app_dir $env(KAUST_APPS_ROOT)/$dir_name/v${version}.app/$name/release
-#        set app_dir /opt/share/$dir_name/v${version}.app/$name/release
-
 ReportIntelVersion
 
 set intelhome $app_dir/composer_xe_2015.0.090
@@ -47,8 +41,6 @@ prepend-path CPATH $tbbroot/include
 set mklroot $intelhome/mkl
 set MKL_MIC_ARCH mic
 setenv MKLROOT $mklroot
-#prepend-path LD_LIBRARY_PATH $intelhome/compiler/lib/$intelarch:$mklroot/lib/$intelarch
-#prepend-path LIBRARY_PATH $intelhome/compiler/lib/$intelarch:$mklroot/lib/$intelarch
 prepend-path LD_LIBRARY_PATH $mklroot/lib/$intelarch
 prepend-path LIBRARY_PATH $mklroot/lib/$intelarch
 #prepend-path MIC_LD_LIBRARY_PATH $intelhome/compiler/lib/mic:$mklroot/lib/mic
@@ -61,16 +53,12 @@ prepend-path CPATH $mklroot/include
 
 set ipproot $intelhome/ipp
 setenv IPPROOT $ipproot
-#prepend-path LD_LIBRARY_PATH $intelhome/compiler/lib/$intelarch:$ipproot/lib/$intelarch
-#prepend-path LIBRARY_PATH $intelhome/compiler/lib/$intelarch:$ipproot/lib/$intelarch
 prepend-path LD_LIBRARY_PATH $ipproot/lib/$intelarch
 prepend-path LIBRARY_PATH  $ipproot/lib/$intelarch
 prepend-path CPATH $ipproot/include
 prepend-path NLSPATH $ipproot/lib/$intelarch/locale/%l_%t/%N
 
 prepend-path PATH $intelhome/bin/$intelarch:$intelhome/mpirt/bin/$intelarch
-#prepend-path MIC_LD_LIBRARY_PATH $intelhome/compiler/lib/mic:$intelhome/mpirt/lib/mic:$intelhome/mkl/lib/mic:$intelhome/tbb/lib/mic
-#prepend-path MIC_LIBRARY_PATH $intelhome/compiler/lib/mic:$intelhome/mpirt/lib/mic:$intelhome/mkl/lib/mic:$intelhome/tbb/lib/mic
 prepend-path MIC_LD_LIBRARY_PATH $intelhome/compiler/lib/mic:$intelhome/mpirt/lib/mic
 prepend-path MIC_LIBRARY_PATH $intelhome/compiler/lib/mic:$intelhome/mpirt/lib/mic
 prepend-path LD_LIBRARY_PATH $intelhome/compiler/lib/$intelarch:$intelhome/mpirt/lib/$intelarch
@@ -78,7 +66,6 @@ prepend-path LIBRARY_PATH $intelhome/compiler/lib/$intelarch
 prepend-path NLSPATH $intelhome/compiler/lib/$intelarch/locale/%l_%t/%N
 setenv INTEL_LICENSE_FILE [file dirname $app_dir]/licenses:$intelhome/licenses
 prepend-path MANPATH $intelhome/man/en_US
-
 
 prepend-path PATH $app_dir/vtune_amplifier_xe_2015.1.0.367959/bin64
 prepend-path MANPATH  $app_dir/vtune_amplifier_xe_2015.1.0.367959/man
@@ -90,7 +77,3 @@ setenv FC $bindir/ifort
 setenv F90 $bindir/ifort
 setenv F77 $bindir/ifort
 setenv CXX $bindir/icpc
-
-
-
-

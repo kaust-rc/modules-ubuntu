@@ -7,14 +7,7 @@ GeneralAppSetup INTEL/v${version}.app
 
 set app_dir $::env(KAUST_APPS_ROOT)/INTEL/v$version.app/$module_name
 
-#/$module_name/release 
-
-
-#        set app_dir $env(KAUST_APPS_ROOT)/$dir_name/v${version}.app/$name/release
-#        set app_dir /opt/share/$dir_name/v${version}.app/$name/release
-
 ReportIntelVersion
-
 
 set mkl_root $app_dir/mkl
 setenv MKLROOT $mkl_root
@@ -38,14 +31,10 @@ append-path CPATH /usr/include/x86_64-linux-gnu
 
 prepend-path NLSPATH $mkl_root/lib/em64t/locale/%l_%t/%N
 prepend-path NLSPATH $app_dir/idb/intel64/locale/%l_%t/%N
-prepend-path NLSPATH $app_dir/lib/intel64/locale/%l_%t/%N 
+prepend-path NLSPATH $app_dir/lib/intel64/locale/%l_%t/%N
 
 prepend-path PATH $app_dir/bin/intel64
 
 prepend-path INCLUDE $mkl_root/include
 
 ReportIntelVersion
-
-
-
-
